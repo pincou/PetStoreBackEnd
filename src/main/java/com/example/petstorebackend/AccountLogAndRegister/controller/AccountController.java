@@ -60,16 +60,6 @@ public class AccountController {
         String username = JwtUtil.getUsername(token);
         return accountService.getAccount(username);
     }
-/**
- * 验证码
- * @Author Zhao
- * @return 返回所生成结果码
- */
-    @GetMapping("/captcha")
-    @ResponseBody
-    public CommonResponse<AccountVO> SendCaptcha(){
-
-    }
     /**
      * 验证用户名是否重复
      * @Author Zhao
