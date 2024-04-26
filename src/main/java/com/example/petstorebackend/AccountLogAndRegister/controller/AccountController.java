@@ -51,6 +51,7 @@ public class AccountController {
     /**
      * 获取账户信息
      * @Author Zhao
+     * @Param token
      * @return 返回账户数据
      */
     @GetMapping("/info")
@@ -107,17 +108,27 @@ public class AccountController {
             @RequestBody AccountVO accountVO,
             @RequestHeader("Authorization") String token){
         String username = JwtUtil.getUsername(token);
-        CommonResponse<AccountVO>response= accountService.updateAccount(accountVO);
+        CommonResponse<AccountVO> response=accountService.getAccount(username);
+
         if (response.isSuccess()){
-            return CommonResponse.createForSuccess(2000,
-                    "资料更新成功",
-                    response.getData());
+            CommonResponse<AccountVO> response1= accountService.updateAccount(accountVO);
+            if (response1.isSuccess()){
+                return CommonResponse.createForSuccess(2000,
+                        "资料更新成功",
+                        response.getData());
+            } else{
+                return CommonResponse.createForError(1001,
+                        "Invalid update parameters",
+                        null);
+            }
         }
-        else{
+        else {
             return CommonResponse.createForError(1001,
-                    "Invalid update parameters",
+                    "token有误",
                     null);
         }
+
+
     }
 
 }
