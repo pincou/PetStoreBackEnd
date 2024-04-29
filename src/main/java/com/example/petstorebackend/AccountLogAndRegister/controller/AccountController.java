@@ -84,8 +84,10 @@ public class AccountController {
      */
     @PostMapping("/register")
     public CommonResponse<String> UserRegister(
-            @RequestParam @Pattern(regexp = "^\\S{1,25}$") @NotBlank(message = "用户名不能为空") String username,
-            @RequestParam @Pattern(regexp = "^\\S{1,25}$")  @NotBlank(message = "密码不能为空") String password){
+            @RequestParam @Pattern(regexp = "^\\S{1,25}$")
+            @NotBlank(message = "用户名不能为空") String username,
+            @RequestParam @Pattern(regexp = "^\\S{1,25}$")
+            @NotBlank(message = "密码不能为空") String password){
         CommonResponse<Boolean> response=UsernameCheck(username);
         if (response.isSuccess()){
             return CommonResponse.createForSuccess(2000,
