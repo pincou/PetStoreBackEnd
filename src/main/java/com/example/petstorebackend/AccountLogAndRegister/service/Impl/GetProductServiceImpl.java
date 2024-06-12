@@ -17,7 +17,6 @@ public class GetProductServiceImpl implements GetProductService {
     @Autowired
     InventoryMapper inventoryMapper;
 
-
     @Override
     public ItemDetail GetItem(String productid) {
         Item item = itemMapper.selectById(productid);
@@ -30,7 +29,6 @@ public class GetProductServiceImpl implements GetProductService {
     @Override
     public Inventory GetInventory(String productid) {
         Item item = itemMapper.selectById(productid);
-        Inventory inventory = inventoryMapper.selectById(item.getItemid());
-        return inventory;
+        return inventoryMapper.selectById(item.getItemid());
     }
 }

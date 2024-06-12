@@ -1,34 +1,17 @@
 package com.example.petstorebackend.AccountLogAndRegister.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+
+@Data
+@TableName("category")
 public class Category {
+    @TableField("catid")
     private String catid;
+    @TableField("name")
     private String name;
+    @TableField("descn")
     private String descn;
 
-
-    public String getCatid() {
-        return catid;
-    }
-
-    public void setCatid(String catid) {
-        this.catid = catid;
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    public String getDescn() {
-        return descn;
-    }
-
-    public void setDescn(String descn) {
-        this.descn = descn;
-    }
 }

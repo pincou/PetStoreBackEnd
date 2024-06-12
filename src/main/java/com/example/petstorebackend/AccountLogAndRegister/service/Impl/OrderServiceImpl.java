@@ -34,4 +34,16 @@ public class OrderServiceImpl implements OrderService {
         }
         return CommonResponse.createForSuccess(orders);
     }
+
+    @Override
+    public CommonResponse deleteOrder(String orderid) {
+        QueryWrapper<Orders> wrapper = new QueryWrapper<>();
+        wrapper.eq("orderid", orderid);
+        int resultSet = orderMapper.delete(wrapper);
+        if (resultSet != 0) {
+            return CommonResponse.createForSuccess(orderid);
+        } else {
+           return CommonResponse.createForError(" delete failed" + orderid);
+        }
+    }
 }

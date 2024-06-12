@@ -14,6 +14,7 @@ import com.example.petstorebackend.AccountLogAndRegister.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -30,9 +31,9 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private SignOnMapper signOnMapper;
 
-    public List<ItemSummary> getItemList() {
-        return null;
-    }
+//    public List<ItemSummary> getItemList() {
+//        return null;
+//    }
 
     /**
      * @param page       页码
@@ -47,7 +48,7 @@ public class ItemServiceImpl implements ItemService {
         itemPage = itemMapper.selectPage(itemPage, supplierId_equ);
         List<Item> items = itemPage.getRecords();
 
-        List<ItemSummary> itemSummaries = items.stream().map(item -> {
+        return items.stream().map(item -> {
             ItemSummary itemSummary = new ItemSummary();
             String itemid = item.getItemid();
             String productid = item.getProductid();
@@ -66,12 +67,10 @@ public class ItemServiceImpl implements ItemService {
 
             return itemSummary;
         }).toList();
-        return itemSummaries;
     }
 
     /**
      * 根据商品id获取商品详情
-     *
      * @param itemId 商品id
      * @return 商品详情
      * @author Luo
@@ -150,18 +149,25 @@ public class ItemServiceImpl implements ItemService {
     }
 
     /**
-     * 被ItemController调用，用于搜索商品,有点麻烦，感觉需要自己编写SQL语句
+     * 被ItemController调用，用于搜索商品,还没写完
      * @author
-     * @param keyword 搜索关键词
+     * @param searchString 搜索关键词
      * @param page    当前页数
      * @param size    每页显示数量
      * @return List<ItemSummary> 搜索结果列表
      * @author
      */
-    public List<ItemSummary> searchItems(String keyword, int page, int size) {
+    @Override
+    public List<ItemSummary> searchItems(String searchString, int page, int size) {
+        List<ItemSummary> summaries=new ArrayList<>();
+        searchString = searchString.replace("+", " ");
+        QueryWrapper<Product> queryWrapperProduct = new QueryWrapper<>();
+        queryWrapperProduct.like("name", "%" + searchString + "%");
 
         return null;
     }
+
+
 
     /**
      * 被 ItemController 调用，用于添加商品。

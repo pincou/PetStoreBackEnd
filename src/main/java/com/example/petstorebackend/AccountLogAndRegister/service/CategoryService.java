@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface CategoryService {
     boolean addCategory(CategoryVO categoryVO);
+    boolean deleteCategoryByCatid(String catid);
     List<CategoryPreview> getCategoriesBasicInfo();
     List<CategoryVO> getCategoriesByPage(Integer page, Integer size);
 }

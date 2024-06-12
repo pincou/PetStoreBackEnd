@@ -8,4 +8,5 @@ import java.util.List;
 public interface OrderService {
     CommonResponse addOrder(Orders order);
     CommonResponse<List<Orders>> getOrders(String username);
+    CommonResponse deleteOrder(String orderid);
 }

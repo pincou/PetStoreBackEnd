@@ -38,7 +38,24 @@ public class CategoryController {
         }
         return ResponseEntity.ok(responseMessage);
     }
-
+    /**
+     * 删除分类
+     * @author Luo
+     * @param catid
+     * @return 是否删除成功
+     */
+    @PostMapping("/delete")
+    public ResponseEntity<ResponseMessage> deleteCategory(@RequestBody String catid) {
+        ResponseMessage responseMessage = new ResponseMessage();
+        if (categoryService.deleteCategoryByCatid(catid)) {
+            responseMessage.setStatus("true");
+            responseMessage.setMessage("删除成功");
+        }else {
+            responseMessage.setStatus("false");
+            responseMessage.setMessage("删除失败");
+        }
+        return ResponseEntity.ok(responseMessage);
+    }
     /**
      * 获取现在已有的Category的基本信息
      * @author Luo

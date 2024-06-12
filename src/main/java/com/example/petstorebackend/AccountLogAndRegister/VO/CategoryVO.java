@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class CategoryVO {
-    public String name;
-    public String image;
+    private String catid;
+    private String name;
+    private String image;
 }
