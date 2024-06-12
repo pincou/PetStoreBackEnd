@@ -175,7 +175,6 @@ public class ItemServiceImpl implements ItemService {
      * @param itemDetail 包含要添加的商品信息的对象
      * @param supplierId 供应商id
      * @return boolean，表示是否添加成功
-     * @author
      */
     public boolean addItem(ItemDetail itemDetail, Integer supplierId) {
         Item item = new Item();
