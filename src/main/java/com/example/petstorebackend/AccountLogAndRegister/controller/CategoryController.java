@@ -11,12 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/categories")
+@RequestMapping("/category")
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
@@ -74,7 +73,7 @@ public class CategoryController {
      * @param model
      * @return CategoryVO列表(具体信息)
      */
-    @RequestMapping("/")
+    @RequestMapping("/categoryList")
     public String getCategoriesByPage(Model model, Integer page, Integer size) {
         List<CategoryVO> categories = categoryService.getCategoriesByPage(page, size);
         model.addAttribute("categories", categories);
